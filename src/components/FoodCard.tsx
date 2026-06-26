@@ -6,6 +6,7 @@ interface Props {
   food: Food;
   log?: FoodLog;
   lang: Lang;
+  babyMonths: number;
   onClick: () => void;
 }
 
@@ -16,18 +17,18 @@ const REACTION_EMOJI: Record<string, string> = {
   reaction: '⚠️',
 };
 
-export default function FoodCard({ food, log, lang, onClick }: Props) {
+export default function FoodCard({ food, log, lang, babyMonths, onClick }: Props) {
   const tx = t[lang];
   const tried = log?.tried ?? false;
-  const isNew = food.status === 'new';
   const isAvoid = food.status === 'avoid';
+  const canEatNow = !isAvoid && food.fromMonths <= babyMonths;
   const name = lang === 'es' ? food.nameEs : food.nameEn;
 
-  // Priority: tried > avoid > new (introduce now) > available (coming soon)
-  let cardClass = 'relative bg-gray-100 border border-gray-200'; // coming soon
-  if (isNew && !tried)   cardClass = 'relative bg-green-50 border-[2px] border-green-500'; // introduce now
-  if (isAvoid && !tried) cardClass = 'relative bg-red-50 border border-red-200';            // avoid
-  if (tried)             cardClass = 'relative bg-white border border-gray-200';            // tried
+  // Priority: tried > avoid > canEatNow > coming soon
+  let cardClass = 'relative bg-gray-100 border border-gray-200 opacity-60'; // coming soon
+  if (canEatNow && !tried) cardClass = 'relative bg-green-50 border-[2px] border-green-500'; // can introduce now
+  if (isAvoid && !tried)   cardClass = 'relative bg-red-50 border border-red-200';            // avoid
+  if (tried)               cardClass = 'relative bg-white border border-gray-200';            // tried
 
   return (
     <button
@@ -50,13 +51,13 @@ export default function FoodCard({ food, log, lang, onClick }: Props) {
       <span className="text-[9px] mt-0.5 leading-none">
         {tried && log?.reaction
           ? REACTION_EMOJI[log.reaction]
-          : isNew
+          : isAvoid
+          ? <span className="text-red-600">{tx.food.avoidUntil(food.fromMonths)}</span>
+          : canEatNow
           ? <span className="text-green-700 font-medium flex items-center gap-0.5">
               <span className="w-1.5 h-1.5 bg-green-600 rounded-full inline-block" />
               {tx.food.suggested}
             </span>
-          : isAvoid
-          ? <span className="text-red-700">{tx.food.avoidUntil(food.fromMonths)}</span>
           : <span className="text-gray-400">{tx.food.fromMonths(food.fromMonths)}</span>
         }
       </span>
