@@ -51,13 +51,12 @@ export default function FoodCard({ food, log, lang, babyMonths, onClick }: Props
       <span className="text-[9px] mt-0.5 leading-none">
         {tried && log?.reaction
           ? REACTION_EMOJI[log.reaction]
+          : tried
+          ? <span className="text-gray-400">{lang === 'es' ? 'probado' : 'tried'}</span>
           : isAvoid
-          ? <span className="text-red-600">{tx.food.avoidUntil(food.fromMonths)}</span>
+          ? <span className="text-red-500">{tx.food.avoidUntil(food.fromMonths)}</span>
           : canEatNow
-          ? <span className="text-green-700 font-medium flex items-center gap-0.5">
-              <span className="w-1.5 h-1.5 bg-green-600 rounded-full inline-block" />
-              {tx.food.suggested}
-            </span>
+          ? <span className="text-green-600 font-medium">{lang === 'es' ? '¡ya puede!' : 'ready!'}</span>
           : <span className="text-gray-400">{tx.food.fromMonths(food.fromMonths)}</span>
         }
       </span>
