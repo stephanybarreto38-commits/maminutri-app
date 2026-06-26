@@ -23,10 +23,11 @@ export default function FoodCard({ food, log, lang, onClick }: Props) {
   const isAvoid = food.status === 'avoid';
   const name = lang === 'es' ? food.nameEs : food.nameEn;
 
-  let cardClass = 'relative bg-gray-50 border border-gray-200';
-  if (tried) cardClass = 'relative bg-gray-50 border border-gray-200';
-  if (isNew) cardClass = 'relative bg-green-50 border-[1.5px] border-green-500';
-  if (isAvoid) cardClass = 'relative bg-red-50 border border-red-200';
+  // Priority: tried > avoid > new (introduce now) > available (coming soon)
+  let cardClass = 'relative bg-gray-100 border border-gray-200'; // coming soon
+  if (isNew && !tried)   cardClass = 'relative bg-green-50 border-[2px] border-green-500'; // introduce now
+  if (isAvoid && !tried) cardClass = 'relative bg-red-50 border border-red-200';            // avoid
+  if (tried)             cardClass = 'relative bg-white border border-gray-200';            // tried
 
   return (
     <button
