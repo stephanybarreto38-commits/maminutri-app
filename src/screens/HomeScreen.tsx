@@ -30,7 +30,6 @@ export default function HomeScreen({
   foodLogs, triedFoodIds, onFoodClick, onNavigate, onMethodOpen, onToggleLang,
 }: Props) {
   const tx = t[lang];
-  const [ageFilter, setAgeFilter] = useState<6 | 8 | 12>(6);
   const [expanded, setExpanded] = useState<Record<FoodCategory, boolean>>({
     fruits: false, vegetables: false, proteins: false, grains: false,
   });
@@ -138,23 +137,6 @@ export default function HomeScreen({
         </button>
       </div>
 
-      {/* AGE FILTER */}
-      <div className="flex gap-2 px-4 pt-3 pb-1">
-        {([6, 8, 12] as const).map(age => (
-          <button
-            key={age}
-            onClick={() => setAgeFilter(age)}
-            className={`text-[11px] px-3 py-1.5 rounded-full border transition-colors ${
-              ageFilter === age
-                ? 'bg-green-50 border-green-300 text-green-700 font-medium'
-                : 'bg-gray-50 border-gray-200 text-gray-500'
-            }`}
-          >
-            {age === 6 ? tx.home.ageFilterAll : age === 8 ? tx.home.ageFilter8 : tx.home.ageFilter12}
-          </button>
-        ))}
-      </div>
-
       {/* LEGEND */}
       <div className="flex gap-x-3 gap-y-1.5 flex-wrap px-4 py-2">
         {[
@@ -172,7 +154,7 @@ export default function HomeScreen({
 
       {/* FOOD CATEGORIES */}
       {FOOD_CATEGORIES.map(cat => {
-        const allFoods = getFoodsByCategory(cat.id).filter(f => f.fromMonths <= ageFilter || f.status === 'avoid');
+        const allFoods = getFoodsByCategory(cat.id);
         const visible = expanded[cat.id] ? allFoods : allFoods.slice(0, PREVIEW_COUNT);
         const hidden = allFoods.length - PREVIEW_COUNT;
         const triedInCat = allFoods.filter(f => foodLogs[f.id]?.tried).length;
