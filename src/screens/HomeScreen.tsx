@@ -172,7 +172,7 @@ export default function HomeScreen({
 
       {/* FOOD CATEGORIES */}
       {FOOD_CATEGORIES.map(cat => {
-        const allFoods = getFoodsByCategory(cat.id).filter(f => f.fromMonths <= ageFilter || f.status === 'avoid' || f.fromMonths <= babyMonths);
+        const allFoods = getFoodsByCategory(cat.id).filter(f => f.fromMonths <= ageFilter || f.status === 'avoid');
         const visible = expanded[cat.id] ? allFoods : allFoods.slice(0, PREVIEW_COUNT);
         const hidden = allFoods.length - PREVIEW_COUNT;
         const triedInCat = allFoods.filter(f => foodLogs[f.id]?.tried).length;
