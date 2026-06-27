@@ -10,9 +10,10 @@ interface Props {
 }
 
 const NAV_ITEMS: { screen: Screen; emoji: string; labelKey: keyof typeof t['es']['nav'] }[] = [
-  { screen: 'home',     emoji: '🏠', labelKey: 'home' },
-  { screen: 'shopping', emoji: '🛒', labelKey: 'shopping' },
-  { screen: 'profile',  emoji: '🐣', labelKey: 'profile' },
+  { screen: 'home',          emoji: '🏠', labelKey: 'home' },
+  { screen: 'shopping',      emoji: '🛒', labelKey: 'shopping' },
+  { screen: 'world-recipes', emoji: '🌍', labelKey: 'worldRecipes' },
+  { screen: 'profile',       emoji: '🐣', labelKey: 'profile' },
 ];
 
 export default function BottomNav({ current, lang, babyName, onNavigate }: Props) {

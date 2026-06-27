@@ -7,6 +7,7 @@ export const t = {
     nav: {
       home: 'Inicio',
       shopping: 'Compras',
+      worldRecipes: 'Mundo',
       profile: 'Mia',
     },
 
@@ -172,6 +173,7 @@ export const t = {
     nav: {
       home: 'Home',
       shopping: 'Shopping',
+      worldRecipes: 'World',
       profile: 'Mia',
     },
 

@@ -15,6 +15,7 @@ import FridgeScreen from './screens/FridgeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import MethodSheet from './components/MethodSheet';
 import FoodQuickModal from './components/FoodQuickModal';
+import WorldRecipesScreen from './screens/WorldRecipesScreen';
 
 export default function App() {
   const store = useAppStore();
@@ -94,6 +95,13 @@ export default function App() {
             onFoodClick={(id) => {
               store.navigateTo('food-detail', id);
             }}
+          />
+        )}
+
+        {store.screen === 'world-recipes' && (
+          <WorldRecipesScreen
+            lang={store.lang}
+            babyMonths={babyMonths}
           />
         )}
 
