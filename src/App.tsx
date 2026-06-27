@@ -3,6 +3,7 @@ import { useAppStore } from './hooks/useAppStore';
 import type { Lang } from './data/translations';
 import { t } from './data/translations';
 import { getFoodById } from './data/foods';
+import MilestoneToast from './components/MilestoneToast';
 
 import BottomNav from './components/BottomNav';
 import HomeScreen from './screens/HomeScreen';
@@ -23,6 +24,7 @@ export default function App() {
 
   const [methodSheetOpen, setMethodSheetOpen] = useState(false);
   const [quickModalFoodId, setQuickModalFoodId] = useState<string | null>(null);
+  const [milestone, setMilestone] = useState<{ foodId: string } | null>(null);
 
   const handleLangToggle = () => store.setLang(store.lang === 'es' ? 'en' : 'es');
 
@@ -143,6 +145,24 @@ export default function App() {
         />
       )}
 
+      {/* MILESTONE TOAST */}
+      {milestone && (() => {
+        const food = getFoodById(milestone.foodId);
+        if (!food) return null;
+        const newCount = store.triedFoodIds.length;
+        return (
+          <MilestoneToast
+            lang={store.lang}
+            babyName={store.baby.name}
+            triedCount={newCount}
+            lastFoodName={store.lang === 'es' ? food.nameEs : food.nameEn}
+            lastFoodEmoji={food.emoji}
+            lastFoodCategory={food.category}
+            onDismiss={() => setMilestone(null)}
+          />
+        );
+      })()}
+
       {/* FOOD QUICK MODAL */}
       {quickModalFoodId && (
         <FoodQuickModal
@@ -151,6 +171,7 @@ export default function App() {
           existingLog={store.foodLogs[quickModalFoodId]}
           onReact={(reaction) => {
             store.quickLog(quickModalFoodId, reaction);
+            setMilestone({ foodId: quickModalFoodId });
             setQuickModalFoodId(null);
           }}
           onSeePrep={() => {

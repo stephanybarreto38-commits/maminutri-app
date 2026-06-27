@@ -127,32 +127,32 @@ export const t = {
 
     // Quick modal
     modal: {
-      firstTime: 'Primera vez hoy',
-      howWasIt: '¿Cómo le fue?',
-      cancel: 'Cancelar',
-      seePrep: 'Ver preparación',
+      firstTime: '¡Primera vez! 🌱',
+      howWasIt: '¿Cómo le fue con este alimento?',
+      cancel: 'Ahora no',
+      seePrep: 'Ver cómo prepararlo',
     },
 
     // Shopping list
     shopping: {
       title: 'Lista de compras',
-      clear: 'Limpiar',
+      clear: 'Limpiar marcados',
       forBaby: 'Para bebé',
       forMom: 'Para mamá',
       baby: 'bebé',
       mom: 'mamá',
       added: 'Agregado a lista de compras',
-      empty: 'Lista vacía — agrega alimentos desde las recetas',
+      empty: 'Aquí irán los ingredientes para cocinar con tu bebé 🛒',
     },
 
     // Fridge / what to cook
     fridge: {
       title: '¿Qué cocino hoy?',
-      info: (name: string) => `Solo muestra alimentos que ${name} ya probó — sin sorpresas para su barriguita.`,
-      selectLabel: 'Selecciona lo que tienes en casa:',
-      showRecipes: 'Ver recetas',
-      resultsLabel: 'Recetas con lo que tienes',
-      noResults: 'Selecciona más ingredientes para ver recetas.',
+      info: (name: string) => `Solo verás alimentos que ${name} ya probó — sin sorpresas para su barriguita 💚`,
+      selectLabel: '¿Qué tienes en casa hoy?',
+      showRecipes: 'Ver qué puedo preparar',
+      resultsLabel: 'Ideas para cocinar hoy',
+      noResults: 'Prueba seleccionando más alimentos — seguro encontramos algo rico 🍳',
     },
 
     // Profile
@@ -284,30 +284,30 @@ export const t = {
     },
 
     modal: {
-      firstTime: 'First time today',
-      howWasIt: 'How did it go?',
-      cancel: 'Cancel',
-      seePrep: 'See preparation',
+      firstTime: 'First time! 🌱',
+      howWasIt: 'How did it go with this food?',
+      cancel: 'Not now',
+      seePrep: 'See how to prepare it',
     },
 
     shopping: {
       title: 'Shopping list',
-      clear: 'Clear done',
+      clear: 'Clear checked',
       forBaby: 'For baby',
       forMom: 'For mom',
       baby: 'baby',
       mom: 'mom',
       added: 'Added to shopping list',
-      empty: 'List is empty — add foods from recipes',
+      empty: "Here you'll find ingredients to cook with your baby 🛒",
     },
 
     fridge: {
       title: 'What should I cook today?',
-      info: (name: string) => `Only shows foods ${name} has already tried — no surprises for her tummy.`,
-      selectLabel: 'Select what you have at home:',
-      showRecipes: 'Show recipes',
-      resultsLabel: 'Recipes with what you have',
-      noResults: 'Select more ingredients to see recipes.',
+      info: (name: string) => `Only foods ${name} has already tried — no surprises for her tummy 💚`,
+      selectLabel: 'What do you have at home today?',
+      showRecipes: 'See what I can make',
+      resultsLabel: 'Ideas for today',
+      noResults: 'Try selecting more foods — we\'ll find something yummy 🍳',
     },
 
     profile: {
